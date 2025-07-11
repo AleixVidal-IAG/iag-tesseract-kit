@@ -1,6 +1,13 @@
+import path from 'path';
+
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
@@ -10,7 +17,13 @@ export default defineConfig({
       provider: 'istanbul',
       reportsDirectory: './coverage',
       reporter: ['text', 'html', 'lcov'],
-      exclude: ['src/**/*.stories.tsx', 'src/**/index.ts'],
+      include: ['src/components/**/*.{ts,tsx}'],
+      exclude: [
+        'src/**/*.stories.tsx',
+        'src/**/index.ts',
+        'src/**/*.test.{ts,tsx}',
+        'src/**/*.spec.{ts,tsx}',
+      ],
     },
   },
 });
