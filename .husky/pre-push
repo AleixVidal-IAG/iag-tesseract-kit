@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Running full ESLint check before push..."
+pnpm run lint || {
+  echo "❌ Push blocked: ESLint errors detected"
+  exit 1
+}
