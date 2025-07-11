@@ -5,6 +5,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import importPlugin from 'eslint-plugin-import';
 import prettier from 'eslint-config-prettier';
 
+/** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -33,8 +34,11 @@ export default [
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': ['warn', { allowExpressions: true }],
+
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+
+      // order
       'import/order': [
         'error',
         {
@@ -43,10 +47,28 @@ export default [
           'newlines-between': 'always',
         },
       ],
+
+      // accesibility
       'jsx-a11y/alt-text': 'warn',
       'jsx-a11y/anchor-is-valid': 'warn',
       'jsx-a11y/label-has-associated-control': 'warn',
     },
+  },
+  // ignore paths
+  {
+    ignores: [
+      '**/node_modules/**',
+      '**/.next/**',
+      '**/out/**',
+      '**/public/**',
+      '**/coverage/**',
+      '**/dist/**',
+      '**/*.config.js',
+      '**/*.config.cjs',
+      '**/*.config.mjs',
+      '**/*.stories.tsx',
+      '**/*.test.ts',
+    ],
   },
   prettier,
 ];
