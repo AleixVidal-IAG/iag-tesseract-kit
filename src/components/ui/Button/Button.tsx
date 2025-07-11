@@ -1,17 +1,18 @@
-import { cn } from "@/lib/utils";
-import {
+import React, {
   ReactNode,
   ButtonHTMLAttributes,
   MouseEvent,
   isValidElement,
   cloneElement,
   ReactElement,
-} from "react";
+} from 'react';
 
-type ButtonVariant = "primary" | "secondary" | "outline";
-type ButtonSize = "sm" | "md" | "lg";
+import { cn } from '@/lib/utils';
 
-export type ButtonV2Props = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonVariant = 'primary' | 'secondary' | 'outline';
+type ButtonSize = 'sm' | 'md' | 'lg';
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
@@ -20,23 +21,24 @@ export type ButtonV2Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   onClick?: (event: MouseEvent<HTMLElement, MouseEvent>) => void;
 };
 
-export const ButtonV2 = ({
+export const Button = ({
   text,
   iconLeft,
   iconRight,
-  variant = "primary",
+  variant = 'primary',
   size,
   disabled,
   className,
   onClick,
   ...props
-}: ButtonV2Props) => {
+}: ButtonProps) => {
   const renderIcon = (icon: ReactNode) => {
     if (!isValidElement(icon)) return null;
 
-    const element = icon as ReactElement<{ className?: string }>;
+    const element = icon as ReactElement<any>;
     return cloneElement(element, {
-      className: cn("w-4 h-4", element.props.className),
+      className: cn('w-4 h-4', element.props.className),
+      'aria-hidden': true,
     });
   };
 
@@ -63,17 +65,17 @@ export const ButtonV2 = ({
   };
 
   const sizeClasses: Record<ButtonSize, string> = {
-    sm: "px-3 py-1.5 text-base gap-1 min-w-[147px] h-[32px]",
-    md: "px-4 py-2 text-base font-semibold gap-2 min-w-[154px] h-[44px] leading-5",
-    lg: "text-lg gap-2.5 min-w-[260px] h-[56px] py-2 px-6 font-semibold leading-4",
+    sm: 'px-3 py-1.5 text-base gap-1 min-w-[147px] h-[32px]',
+    md: 'px-4 py-2 text-base font-semibold gap-2 min-w-[154px] h-[44px] leading-5',
+    lg: 'text-lg gap-2.5 min-w-[260px] h-[56px] py-2 px-6 font-semibold leading-4',
   };
 
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center rounded-full font-medium transition-colors disabled:cursor-not-allowed disabled:pointer-events-none px-8 gap-2 py-1.5",
+        'inline-flex items-center justify-center rounded-full font-medium transition-colors disabled:cursor-not-allowed disabled:pointer-events-none px-8 gap-2 py-1.5',
         variantClasses[variant],
-        size ? sizeClasses[size] : "",
+        size ? sizeClasses[size] : '',
         className
       )}
       onClick={onClick}
