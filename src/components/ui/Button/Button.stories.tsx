@@ -1,24 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import { CustomDocsPage } from '@storybook-docs';
-import { ButtonV2 } from '@/ui/Button/ButtonV2';
-
-import { action } from '@storybook/addon-actions';
-import { Icons } from '@/icons/icon';
+import { Button } from '@/components/ui';
+import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
 
 const meta = {
-  component: ButtonV2,
+  component: Button,
   parameters: {
-    docs: {
-      page: CustomDocsPage,
-    },
     layout: 'centered',
   },
   args: {
     text: 'text',
     iconLeft: '',
     iconRight: '',
-    onClick: action('on-click'),
   },
   argTypes: {
     variant: {
@@ -28,7 +21,7 @@ const meta = {
       control: { type: 'select', options: ['sm', 'md', 'lg'] },
     },
   },
-} satisfies Meta<typeof ButtonV2>;
+} satisfies Meta<typeof Button>;
 
 export default meta;
 
@@ -45,7 +38,7 @@ export const PrimaryDefaultButton: Story = {
 export const PrimaryWithLeftIcon: Story = {
   args: {
     text: 'text',
-    iconLeft: <Icons.arrowRight />,
+    iconLeft: <ArrowRight />,
     variant: 'primary',
     size: 'md',
   },
@@ -54,7 +47,7 @@ export const PrimaryWithLeftIcon: Story = {
 export const PrimaryWithRightIcon: Story = {
   args: {
     text: 'text',
-    iconRight: <Icons.arrowRight />,
+    iconRight: <ArrowRight />,
     variant: 'primary',
     size: 'md',
   },
@@ -63,8 +56,8 @@ export const PrimaryWithRightIcon: Story = {
 export const PrimaryWithIcons: Story = {
   args: {
     text: 'text',
-    iconLeft: <Icons.arrowRight />,
-    iconRight: <Icons.arrowRight />,
+    iconLeft: <ArrowRight />,
+    iconRight: <ArrowRight />,
     variant: 'primary',
     size: 'md',
   },
@@ -73,8 +66,8 @@ export const PrimaryWithIcons: Story = {
 export const PrimaryWithIconsOnClick: Story = {
   args: {
     text: 'text',
-    iconLeft: <Icons.arrowRight />,
-    iconRight: <Icons.arrowRight />,
+    iconLeft: <ArrowRight />,
+    iconRight: <ArrowRight />,
     variant: 'primary',
     size: 'md',
     onClick: () => {
@@ -86,7 +79,7 @@ export const PrimaryWithIconsOnClick: Story = {
 export const PrimaryWithLoading: Story = {
   args: {
     text: 'Loading ...',
-    iconLeft: <Icons.loader2 className="animate-spin" />,
+    iconLeft: <Loader2 className="animate-spin" />,
     variant: 'primary',
     size: 'md',
   },
@@ -95,7 +88,7 @@ export const PrimaryWithLoading: Story = {
 export const SecondaryWithLeftIcon: Story = {
   args: {
     text: 'text',
-    iconLeft: <Icons.arrowRight />,
+    iconLeft: <ArrowRight />,
     variant: 'secondary',
     size: 'md',
   },
@@ -104,7 +97,7 @@ export const SecondaryWithLeftIcon: Story = {
 export const SecondaryWithRightIcon: Story = {
   args: {
     text: 'text',
-    iconRight: <Icons.arrowRight />,
+    iconRight: <ArrowRight />,
     variant: 'secondary',
     size: 'md',
   },
@@ -113,8 +106,8 @@ export const SecondaryWithRightIcon: Story = {
 export const SecondaryWithIcons: Story = {
   args: {
     text: 'text',
-    iconLeft: <Icons.arrowRight />,
-    iconRight: <Icons.arrowRight />,
+    iconLeft: <ArrowRight />,
+    iconRight: <ArrowRight />,
     variant: 'secondary',
     size: 'md',
   },
@@ -123,8 +116,8 @@ export const SecondaryWithIcons: Story = {
 export const SecondaryWithIconsOnClick: Story = {
   args: {
     text: 'text',
-    iconLeft: <Icons.arrowRight />,
-    iconRight: <Icons.arrowRight />,
+    iconLeft: <ArrowRight />,
+    iconRight: <ArrowRight />,
     variant: 'secondary',
     size: 'md',
     onClick: () => {
@@ -136,7 +129,7 @@ export const SecondaryWithIconsOnClick: Story = {
 export const SecondaryWithLoading: Story = {
   args: {
     text: 'Loading ...',
-    iconLeft: <Icons.loader2 className="animate-spin" />,
+    iconLeft: <Loader2 className="animate-spin" />,
     variant: 'secondary',
     size: 'md',
   },
@@ -145,7 +138,7 @@ export const SecondaryWithLoading: Story = {
 export const Outline: Story = {
   args: {
     text: 'Back',
-    iconLeft: <Icons.arrowLeft />,
+    iconLeft: <ArrowLeft />,
     variant: 'outline',
   },
 };
